@@ -9,8 +9,8 @@ import LoginModule from './components/LoginModule'
 function App() {
   const userContext = React.createContext();
   const [userInfo, setUserInfo] = React.useState();
-  const [isLoggedIn, setLogin] = React.useState(localStorage.getItem('sessionExist'));
-  console.log(isLoggedIn,'isLoggedIn')
+  const [isLoggedIn, setLogin] = React.useState(JSON.parse(localStorage.getItem('sessionExist')));
+  console.log(isLoggedIn,'isLoggedIn', JSON.parse(localStorage.getItem('sessionExist')))
   console.log(userInfo);
   let sessionExist = localStorage.getItem('sessionExist');
 
@@ -29,8 +29,8 @@ function App() {
               path="/dashboard"
               exact
               render={()=>{
-                return isLoggedIn===true?<Dashboard setLogin={setLogin} setUser={setUserInfo} />:
-                <LoginModule  setLogin={setLogin} />
+                return isLoggedIn===true?(<Dashboard setLogin={setLogin} setUser={setUserInfo} />):
+                (<Redirect to="/login"/>)
               }}
             >
             </Route>
