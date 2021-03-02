@@ -26,7 +26,7 @@ function Layout(props) {
     marginRight:' 10px'}}>
         logout
       </Button>
-      <select style={{float: 'right'}} onChange={(e)=>props.setRole(e.target.value)}>
+      <select style={{float: 'right', marginTop:"13px",marginRight:"13px", padding: '7px'}} onChange={(e)=>props.setRole(e.target.value)}>
             <option>--select--</option>
             {props.roles.map((role,k)=><option key={k} value={role}>{role}</option>)}
           </select>
