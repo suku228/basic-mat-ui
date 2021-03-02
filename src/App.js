@@ -10,6 +10,7 @@ function App() {
   const userContext = React.createContext();
   const [userInfo, setUserInfo] = React.useState();
   const [isLoggedIn, setLogin] = React.useState(localStorage.getItem('sessionExist'));
+  console.log(isLoggedIn,'isLoggedIn')
   console.log(userInfo);
   let sessionExist = localStorage.getItem('sessionExist');
 
@@ -27,8 +28,12 @@ function App() {
             <Route
               path="/dashboard"
               exact
-              render={() => <Dashboard setLogin={setLogin} setUser={setUserInfo} />}
-            ></Route>
+              render={()=>{
+                return isLoggedIn===true?<Dashboard setLogin={setLogin} setUser={setUserInfo} />:
+                <LoginModule  setLogin={setLogin} />
+              }}
+            >
+            </Route>
             {isLoggedIn?<Redirect to="/dashboard" />:<Redirect to="/login" />}
           </BrowserRouter>
         </userContext.Provider>
